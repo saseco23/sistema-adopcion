@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const adoptionFormSchema = new mongoose.Schema({
-    adoptador_id: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
+    adoptador_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
         unique: true // ✅ Solo un formulario base por usuario
     },
@@ -31,8 +31,8 @@ const adoptionFormSchema = new mongoose.Schema({
         }
     ],
 
-    reuseForm: { 
-        type: Boolean, 
+    reuseForm: {
+        type: Boolean,
         default: false // ✅ Preferencia del usuario
     }
 }, { timestamps: true });

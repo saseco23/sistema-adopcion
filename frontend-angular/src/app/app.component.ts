@@ -3,6 +3,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './pages/auth/auth.service';
+import { ChatbotComponent } from './chatbot/chatbot.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,6 +13,7 @@ import { AuthService } from './pages/auth/auth.service';
     RouterOutlet,
     CommonModule,
     HttpClientModule,
+    ChatbotComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -24,7 +27,7 @@ export class AppComponent implements OnInit {
   // Modal control
   isModalOpen: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {

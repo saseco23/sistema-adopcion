@@ -1,0 +1,33 @@
+<section class="chatbot" [class.chatbot--open]="isOpen">
+    <button class="chatbot__toggle" type="button" (click)="toggleChat()" aria-label="Abrir chatbot">
+        <span *ngIf="!isOpen">Chat</span>
+        <span *ngIf="isOpen">Cerrar</span>
+    </button>
+
+    <div class="chatbot__panel" *ngIf="isOpen">
+        <header class="chatbot__header">
+            <div>
+                <h2>Asistente de adopcion</h2>
+                <p>Resuelve dudas sobre mascotas y solicitudes</p>
+            </div>
+        </header>
+
+        <div class="chatbot__messages">
+            <article class="chatbot__message" *ngFor="let item of messages"
+                [class.chatbot__message--user]="item.role === 'user'"
+                [class.chatbot__message--bot]="item.role === 'bot'">
+                {{ item.text }}
+            </article>
+
+            <article class="chatbot__message chatbot__message--bot chatbot__message--loading" *ngIf="isLoading">
+                Escribiendo...
+            </article>
+        </div>
+
+        <form class="chatbot__form" (ngSubmit)="sendMessage()">
+            <input name="message" type="text" [(ngModel)]="message" placeholder="Escribe tu pregunta"
+                autocomplete="off" />
+            <button type="submit" [disabled]="isLoading || !message.trim()">Enviar</button>
+        </form>
+    </div>
+</section>

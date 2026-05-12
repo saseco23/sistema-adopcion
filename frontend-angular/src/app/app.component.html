@@ -6,17 +6,19 @@
         PawPrints Of Love<span class="brand-dot">.</span>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item"><a class="nav-link active" routerLink="/">Inicio</a></li>
-          
+
           <!-- Dropdown para Mascotas -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mascotas</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Mascotas</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/dogs">Perros</a></li>
               <li><a class="dropdown-item" routerLink="/cats">Gatos</a></li>
@@ -32,7 +34,8 @@
 
           <!-- Dropdown para ¿Predicción? -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">¿Predicción?</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">¿Predicción?</a>
             <ul class="dropdown-menu">
               <!-- Cambiado el modal por una ruta -->
               <li><a class="dropdown-item" routerLink="/prediction-form">Form Prediction</a></li>
@@ -44,14 +47,18 @@
         <div class="d-flex align-items-center">
           <!-- Menú de sesión -->
           <div *ngIf="userName; else loginButton" class="dropdown ms-2">
-            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               {{ userName }}
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/dashboard/mi-cuenta">Mi Cuenta</a></li>
-              <li *ngIf="userRole === 'cuidador'"><a class="dropdown-item" routerLink="/dashboard/cuidador-panel">Panel de Cuidador</a></li>
-              <li *ngIf="userRole === 'adoptador'"><a class="dropdown-item" routerLink="/dashboard/adoptador-panel">Panel de Adoptador</a></li>
-              <li *ngIf="userRole === 'administrador'"><a class="dropdown-item" routerLink="/admin-dashboard">Panel de Administración</a></li>
+              <li *ngIf="userRole === 'cuidador'"><a class="dropdown-item" routerLink="/dashboard/cuidador-panel">Panel
+                  de Cuidador</a></li>
+              <li *ngIf="userRole === 'adoptador'"><a class="dropdown-item"
+                  routerLink="/dashboard/adoptador-panel">Panel de Adoptador</a></li>
+              <li *ngIf="userRole === 'administrador'"><a class="dropdown-item" routerLink="/admin-dashboard">Panel de
+                  Administración</a></li>
               <li><a class="dropdown-item" (click)="logout()">Salir</a></li>
             </ul>
           </div>
@@ -75,3 +82,5 @@
   <p>&copy; 2024 Adopta un Perro. Todos los derechos reservados.</p>
   <a routerLink="/">Volver al inicio</a>
 </footer>
+
+<app-chatbot></app-chatbot>

@@ -13,6 +13,51 @@ const openai = new OpenAI({
 //Memoria temporal para mantener contexto por usuario
 let chatMemory = {};
 
+const temasPermitidos = [
+  "animal",
+  "animales",
+  "mascota",
+  "mascotas",
+  "perro",
+  "perros",
+  "gato",
+  "gatos",
+  "cachorro",
+  "cachorros",
+  "adopcion",
+  "adopción",
+  "adoptar",
+  "adoptado",
+  "adoptada",
+  "refugio",
+  "hogar",
+  "cuidador",
+  "veterinario",
+  "veterinaria",
+  "vacuna",
+  "vacunas",
+  "esterilizacion",
+  "esterilización",
+  "comida",
+  "alimento",
+  "raza",
+  "razas",
+  "paseo",
+  "collar",
+  "correa",
+  "arena",
+  "maullido",
+  "ladrido",
+  "pulgas",
+  "garrapatas"
+];
+
+function esTemaPermitido(mensaje) {
+  const texto = mensaje.toLowerCase();
+
+  return temasPermitidos.some((palabra) => texto.includes(palabra));
+}
+
 //Ruta del chatbot
 router.post("/chatbot", async (req, res) => {
   try {
@@ -22,13 +67,20 @@ router.post("/chatbot", async (req, res) => {
       return res.status(400).json({ error: "Falta el mensaje del usuario." });
     }
 
+    if (!esTemaPermitido(message)) {
+      return res.json({
+        reply:
+          "Solo puedo responder preguntas relacionadas con animales, mascotas, cuidados y procesos de adopción.",
+      });
+    }
+
     // Inicializar historial si no existe
     if (!chatMemory[userId]) {
       chatMemory[userId] = [
         {
           role: "system",
           content:
-            "Eres un asistente amable y experto en adopción de mascotas. Ayuda a los usuarios a encontrar la mascota ideal según su estilo de vida, preferencias y espacio disponible. Habla siempre de forma empática y clara.",
+            "Eres un asistente amable y experto únicamente en adopción de mascotas, animales domésticos, bienestar animal y cuidado de perros y gatos. Si el usuario pregunta sobre un tema diferente, responde educadamente que solo puedes ayudar con temas relacionados con animales, mascotas y adopción. Ayuda a los usuarios a encontrar la mascota ideal según su estilo de vida, preferencias y espacio disponible. Habla siempre de forma empática y clara.",
         },
       ];
     }
@@ -38,7 +90,7 @@ router.post("/chatbot", async (req, res) => {
 
     // Llamar a OpenAI
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini", // más económico y rápido
+      model: "gpt-4o-mini",
       messages: chatMemory[userId],
     });
 
@@ -55,5 +107,3 @@ router.post("/chatbot", async (req, res) => {
 });
 
 module.exports = router;
-
-
