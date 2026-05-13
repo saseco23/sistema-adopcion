@@ -5,12 +5,12 @@ const OpenAI = require("openai");
 
 const router = express.Router();
 
-//Crear cliente con la API Key desde .env
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-//Memoria temporal para mantener contexto por usuario
+
 let chatMemory = {};
 
 const temasPermitidos = [
@@ -58,7 +58,7 @@ function esTemaPermitido(mensaje) {
   return temasPermitidos.some((palabra) => texto.includes(palabra));
 }
 
-//Ruta del chatbot
+
 router.post("/chatbot", async (req, res) => {
   try {
     const { message, userId = "anonimo" } = req.body;
@@ -74,7 +74,7 @@ router.post("/chatbot", async (req, res) => {
       });
     }
 
-    // Inicializar historial si no existe
+
     if (!chatMemory[userId]) {
       chatMemory[userId] = [
         {
@@ -85,10 +85,9 @@ router.post("/chatbot", async (req, res) => {
       ];
     }
 
-    // Añadir el mensaje del usuario
+
     chatMemory[userId].push({ role: "user", content: message });
 
-    // Llamar a OpenAI
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: chatMemory[userId],
@@ -96,12 +95,12 @@ router.post("/chatbot", async (req, res) => {
 
     const reply = completion.choices[0].message.content;
 
-    // Añadir la respuesta al historial
+
     chatMemory[userId].push({ role: "assistant", content: reply });
 
     res.json({ reply });
   } catch (error) {
-    console.error("❌ Error en chatbot:", error);
+    console.error("Error en chatbot:", error);
     res.status(500).json({ error: "Error interno del chatbot." });
   }
 });
