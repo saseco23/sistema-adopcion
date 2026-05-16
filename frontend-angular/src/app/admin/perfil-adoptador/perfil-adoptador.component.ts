@@ -32,7 +32,7 @@ export class PerfilAdoptadorComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get(`http://localhost:5000/api/users/${id}`, { headers }).subscribe(
+    this.http.get(`/api/users/${id}`, { headers }).subscribe(
       (response: any) => {
         this.adoptador = response;
         this.calcularEdad(response.birthDate);

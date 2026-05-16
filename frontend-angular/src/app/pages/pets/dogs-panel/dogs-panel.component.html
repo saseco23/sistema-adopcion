@@ -24,7 +24,7 @@
     <div *ngIf="filteredDogs.length > 0; else noDogs" class="pets-list">
       <div *ngFor="let dog of filteredDogs" class="pet-card">
         <div *ngIf="dog.status === 'adoptada'" class="ribbon">🏠 Adoptado</div>
-        <img [src]="'http://localhost:5000/' + dog.image" alt="{{ dog.name }}" class="pet-image" />
+        <img [src]="'/' + dog.image" alt="{{ dog.name }}" class="pet-image" />
         <div class="pet-info">
           <h4>{{ dog.name }}</h4>
           <p><i class="fas fa-paw"></i> <strong>Raza:</strong> {{ dog.breed }}</p>

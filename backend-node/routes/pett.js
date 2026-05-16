@@ -2,6 +2,8 @@ const express = require('express');
 const Pet = require('../models/Pet');
 const User = require('../models/User');
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const authMiddleware = require('../middleware/authMiddleware');
 const mongoose = require('mongoose');
 const router = express.Router();
@@ -11,9 +13,14 @@ const Prediction = require('../models/Prediction'); // 👈 modelo que debes cre
 const AdoptionRequest = require('../models/AdoptionRequest'); // Ajusta la ruta según tu estructura
 
 // Configuración de multer para subir imágenes
+const uploadsDir = path.join(__dirname, '..', 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, uploadsDir);
   },
   filename: function (req, file, cb) {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -72,8 +79,8 @@ router.post('/add', authMiddleware, upload.fields([
     } = req.body;
 
     // Obtener las rutas de las imágenes subidas
-    const imagePath = req.files['image'] ? req.files['image'][0].path : null;
-    const verificationImagePath = req.files['verificationImage'] ? req.files['verificationImage'][0].path : null;
+    const imagePath = req.files['image'] ? `uploads/${req.files['image'][0].filename}` : null;
+    const verificationImagePath = req.files['verificationImage'] ? `uploads/${req.files['verificationImage'][0].filename}` : null;
     const cuidador_id = req.user.id;
 
     // Convertir vaccines a un array si viene como JSON string
@@ -447,4 +454,3 @@ router.post('/predic', authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
-

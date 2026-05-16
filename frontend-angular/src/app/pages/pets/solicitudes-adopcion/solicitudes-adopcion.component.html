@@ -48,7 +48,7 @@
     <div class="row g-4">
       <div *ngFor="let solicitud of solicitudesFiltradas" class="col-md-6 col-lg-4">
         <div class="card h-100">
-          <img [src]="'http://localhost:5000/' + solicitud.mascota_id.image" 
+          <img [src]="'/' + solicitud.mascota_id.image" 
                class="card-img-top" 
                [alt]="'Imagen de ' + solicitud.mascota_id.name"
                style="height: 200px; object-fit: cover;">

@@ -13,13 +13,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Liberar puerto si está en uso
-try {
-  console.log(`🔄 Verificando si el puerto ${PORT} está en uso...`);
-  execSync(`npx kill-port ${PORT}`);
-  console.log(`✅ Puerto ${PORT} liberado.`);
-} catch (err) {
-  console.log(`⚠️ No se pudo liberar el puerto ${PORT}, puede que no estuviera en uso.`);
+// Liberar puerto si esta en uso solo cuando se ejecuta localmente.
+// Dentro de Docker no se debe ejecutar kill-port.
+if (process.env.DOCKER !== 'true') {
+  try {
+    console.log(`🔄 Verificando si el puerto ${PORT} está en uso...`);
+    execSync(`npx kill-port ${PORT}`);
+    console.log(`✅ Puerto ${PORT} liberado.`);
+  } catch (err) {
+    console.log(`⚠️ No se pudo liberar el puerto ${PORT}, puede que no estuviera en uso.`);
+  }
 }
 
 // Conectar a la base de datos
@@ -69,5 +72,4 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });
-
 

@@ -26,7 +26,7 @@ export class MascotasAdoptadasComponent implements OnInit {
         this.mascotasAdoptadas = data.map((solicitud: any) => ({
           nombre: solicitud.mascota_id?.name || 'Nombre no disponible',
           tipo: solicitud.mascota_id?.type || 'Tipo no disponible',
-          imagen: solicitud.mascota_id?.image ? `http://localhost:5000/${solicitud.mascota_id.image}` : 'ruta/a/imagen/default.jpg',
+          imagen: solicitud.mascota_id?.image ? `/${solicitud.mascota_id.image}` : 'ruta/a/imagen/default.jpg',
           fechaAdopcion: solicitud.fecha_decision ? new Date(solicitud.fecha_decision).toLocaleDateString() : 'Fecha no disponible',
           raza: solicitud.mascota_id?.breed || 'Raza no especificada',
           descripcion: solicitud.mascota_id?.description || 'Sin descripción disponible'

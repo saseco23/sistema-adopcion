@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     // Enviar la nueva contraseña y el token al backend
-    this.http.post(`http://localhost:5000/api/auth/reset-password/${this.token}`, { password: this.newPassword })
+    this.http.post(`/api/auth/reset-password/${this.token}`, { password: this.newPassword })
       .subscribe(
         (response: any) => {
           this.showModal('successModal', 'Contraseña restablecida correctamente.');

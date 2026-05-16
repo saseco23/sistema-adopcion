@@ -72,7 +72,7 @@ export class AdopcionFormComponent implements OnInit {
   async obtenerDetallesMascota(): Promise<void> {
     try {
       const response: any = await this.http.get(
-        `http://localhost:5000/api/pets/${this.mascota_id}`,
+        `/api/pets/${this.mascota_id}`,
         { headers: this.createHeaders() }
       ).toPromise();
       this.cuidador_id = response.cuidador_id?._id || response.cuidador_id;
@@ -91,7 +91,7 @@ export class AdopcionFormComponent implements OnInit {
     if (!this.adoptador_id) return;
 
     this.http.get<any>(
-      `http://localhost:5000/api/solicitudes/last-form/${this.adoptador_id}`,
+      `/api/solicitudes/last-form/${this.adoptador_id}`,
       { headers: this.createHeaders() }
     ).subscribe({
       next: (response) => {
@@ -111,7 +111,7 @@ export class AdopcionFormComponent implements OnInit {
 
   usarDatosAnteriores(): void {
     this.http.get<any>(
-      `http://localhost:5000/api/solicitudes/last-form/${this.adoptador_id}`,
+      `/api/solicitudes/last-form/${this.adoptador_id}`,
       { headers: this.createHeaders() }
     ).subscribe({
       next: (response) => {
@@ -197,7 +197,7 @@ export class AdopcionFormComponent implements OnInit {
 
     try {
       const existeSolicitud = await this.http.get<any>(
-        `http://localhost:5000/api/solicitudes/check-adoption/${this.adoptador_id}/${this.mascota_id}`,
+        `/api/solicitudes/check-adoption/${this.adoptador_id}/${this.mascota_id}`,
         { headers: this.createHeaders() }
       ).toPromise();
 
@@ -232,7 +232,7 @@ export class AdopcionFormComponent implements OnInit {
       };
 
       this.http.post(
-        'http://localhost:5000/api/solicitudes/create',
+        '/api/solicitudes/create',
         adopcionData,
         { headers: this.createHeaders() }
       ).subscribe({

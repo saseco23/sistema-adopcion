@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class PetService {
-  private apiUrl = 'http://localhost:5000/api/pets';
+  private apiUrl = '/api/pets';
 
   constructor(private http: HttpClient) {}
 
@@ -94,18 +94,18 @@ export class PetService {
   // Función para verificar el formulario de adopción
   checkAdoptionForm(adoptadorId: string): Observable<boolean> {
     const headers = this.createAuthorizationHeader();
-    return this.http.get<boolean>(`http://localhost:5000/api/solicitudes/check-adoption-form/${adoptadorId}`, { headers });
+    return this.http.get<boolean>(`/api/solicitudes/check-adoption-form/${adoptadorId}`, { headers });
   }
 
   // Método para obtener solicitudes de adopción filtradas por tipo de mascota (gato o perro)
   getSolicitudesByTipo(tipoMascota: string): Observable<any[]> {
     const headers = this.createAuthorizationHeader();
-    return this.http.get<any[]>(`http://localhost:5000/api/solicitudes/tipo/${tipoMascota}`, { headers });
+    return this.http.get<any[]>(`/api/solicitudes/tipo/${tipoMascota}`, { headers });
   }
 
   // Método para manejar solicitudes de adopción (aprobar o rechazar)
   handleAdoptionRequest(action: string, solicitudId: string): Observable<any> {
     const headers = this.createAuthorizationHeader();
-    return this.http.put<any>(`http://localhost:5000/api/solicitudes/aprobar/${solicitudId}`, { action }, { headers });
+    return this.http.put<any>(`/api/solicitudes/aprobar/${solicitudId}`, { action }, { headers });
   }
 }

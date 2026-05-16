@@ -10,7 +10,7 @@
 <ng-container *ngFor="let dog of dogs">
     <div *ngIf="dog.status === 'disponible'" class="dog-card">
         <div class="dog-image-container" [attr.data-name]="dog.name">
-            <img *ngIf="dog.image" [src]="'http://localhost:5000/' + dog.image" alt="{{ dog.name }}" class="dog-image" />
+            <img *ngIf="dog.image" [src]="'/' + dog.image" alt="{{ dog.name }}" class="dog-image" />
         </div>
 
         <div class="dog-card-content">

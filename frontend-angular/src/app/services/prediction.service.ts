@@ -8,7 +8,7 @@ import { Router } from '@angular/router';  // Importamos el Router de Angular
   providedIn: 'root'
 })
 export class PredictionService {
-  private apiUrl = 'http://localhost:5000/api/pett/predic'; // Ajustado al nuevo endpoint
+  private apiUrl = '/api/pett/predic'; // Ajustado al nuevo endpoint
 
   constructor(private http: HttpClient, private router: Router) { }  // Inyectamos el Router de Angular
 

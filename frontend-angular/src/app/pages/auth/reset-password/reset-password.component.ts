@@ -20,7 +20,7 @@ export class ResetPasswordComponent {
   onSubmit() {
     if (this.email) {
       // Hacer la solicitud HTTP al backend para enviar el enlace de restablecimiento
-      this.http.post('http://localhost:5000/api/auth/reset-password', { email: this.email }).subscribe(
+      this.http.post('/api/auth/reset-password', { email: this.email }).subscribe(
         (response: any) => {
           Swal.fire({
             icon: 'success',

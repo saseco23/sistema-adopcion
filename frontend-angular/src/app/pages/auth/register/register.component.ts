@@ -101,7 +101,7 @@ export class RegisterComponent {
         return;
       }
 
-      this.http.post('http://localhost:5000/api/auth/register', user).subscribe(
+      this.http.post('/api/auth/register', user).subscribe(
         (response) => {
           Swal.fire({
             icon: 'success',

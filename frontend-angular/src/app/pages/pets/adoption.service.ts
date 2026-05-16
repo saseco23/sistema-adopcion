@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AdoptionService {
-  private apiUrl = 'http://localhost:5000/api/solicitudes';
+  private apiUrl = '/api/solicitudes';
 
   constructor(private http: HttpClient) {}
 

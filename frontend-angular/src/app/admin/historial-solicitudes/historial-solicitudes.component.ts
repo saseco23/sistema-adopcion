@@ -23,7 +23,7 @@ export class HistorialSolicitudesComponent implements OnInit {
         this.solicitudes = data.map((solicitud: any) => ({
           mascotaTipo: solicitud.mascota_id?.type, // Capturamos el tipo (Perro o Gato)
           mascotaNombre: solicitud.mascota_id?.name,
-          mascotaImagen: solicitud.mascota_id ? `http://localhost:5000/${solicitud.mascota_id.image}` : null,
+          mascotaImagen: solicitud.mascota_id ? `/${solicitud.mascota_id.image}` : null,
           fechaSolicitud: solicitud.fecha_solicitud,
           estado: solicitud.estado
         }));

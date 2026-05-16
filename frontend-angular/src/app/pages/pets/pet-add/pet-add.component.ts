@@ -49,7 +49,7 @@ export class PetAddComponent {
   };
   image: File | null = null;
   verificationImage: File | null = null;
-  private apiUrl = 'http://localhost:5000/api/pets/add';
+  private apiUrl = '/api/pets/add';
 
   onVerificationImageSelected(event: any) {
     if (event.target.files && event.target.files.length > 0) {

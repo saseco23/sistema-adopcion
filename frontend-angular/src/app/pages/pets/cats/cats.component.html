@@ -9,7 +9,7 @@
 <ng-container *ngFor="let cat of cats">
   <div *ngIf="cat.status === 'disponible'" class="cat-card">
     <div class="cat-image-container" [attr.data-name]="cat.name">
-      <img *ngIf="cat.image" [src]="'http://localhost:5000/' + cat.image" alt="{{ cat.name }}" class="cat-image" />
+      <img *ngIf="cat.image" [src]="'/' + cat.image" alt="{{ cat.name }}" class="cat-image" />
     </div>
 
     <div class="cat-card-content">

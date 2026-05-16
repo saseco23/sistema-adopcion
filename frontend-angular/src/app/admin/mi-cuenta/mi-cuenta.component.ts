@@ -28,7 +28,7 @@ export class MiCuentaComponent implements OnInit {
   showCurrentPassword: boolean = false;
   showNewPassword: boolean = false;
   showConfirmPassword: boolean = false;
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = '/api';
 
   constructor(
     private http: HttpClient,

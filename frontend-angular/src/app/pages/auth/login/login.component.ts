@@ -27,7 +27,7 @@ export class LoginComponent {
       };
 
       // Asegúrate de que los datos sean enviados como JSON
-      this.http.post('http://localhost:5000/api/auth/login', loginData, {
+      this.http.post('/api/auth/login', loginData, {
         headers: new HttpHeaders().set('Content-Type', 'application/json'),
       }).subscribe(
         (response: any) => {
@@ -108,7 +108,7 @@ export class LoginComponent {
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-      this.http.get('http://localhost:5000/api/dashboard', { headers }).subscribe(
+      this.http.get('/api/dashboard', { headers }).subscribe(
         (response: any) => {
           console.log('Acceso al dashboard:', response);
         },
